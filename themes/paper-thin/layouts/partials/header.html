@@ -1,0 +1,17 @@
+<header class="profile">
+  <a href="{{ "/" | relURL }}">
+    {{ if .Site.Author.avatar }}
+        <img class="avatar" alt="avatar" src="{{ .Site.Author.avatar | relURL }}" />   
+    {{ else }}
+        <img class="avatar" alt="avatar" src="{{ "/images/avatar.png" | relURL }}" />
+    {{ end }}
+  </a>
+
+  <div>
+    {{ if .Site.Author.name }}
+      {{ .Site.Author.name }}
+    {{ else }}
+      {{ .Site.Title }}
+    {{ end }}
+  </div>
+</header>

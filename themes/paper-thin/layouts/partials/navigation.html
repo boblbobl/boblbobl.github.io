@@ -1,0 +1,6 @@
+<nav class="navigation">
+	<a href="{{ "/" | relURL }}" class="logo">{{ with .Site.Title }}{{ . }}{{ else }}Home{{ end }}</a>
+	<ul class="menu">
+		<li><a href="{{ "/about" | relURL }}">{{ with .Site.Params.about }}{{ . }}{{ else }}About{{ end }}</a></li>
+	</ul>
+</nav>

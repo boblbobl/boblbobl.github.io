@@ -1,0 +1,20 @@
+<footer id="footer">
+
+    <span class="copyright">
+    {{ with .Site.Params.copyright }}
+        {{ . | markdownify }}
+    {{ else }}
+       © Copyright 
+       {{ now.Format "2006"}}
+       {{ .Site.Params.Author }}
+    {{ end }}
+    </span>
+    <span>·</span>
+    <span class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a>
+    </span>
+    <span>·</span>
+    <span class="theme">
+        Theme Paper-Thin
+    </span>
+</footer>
