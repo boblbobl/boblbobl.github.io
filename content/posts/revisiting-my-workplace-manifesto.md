@@ -1,6 +1,6 @@
 ---
 title: "Revisiting My Workplace Manifesto"
-date: 2020-10-04T23:39:13+01:00
+date: 2020-10-04T07:56:18+01:00
 draft: false
 categories:
 - Personal

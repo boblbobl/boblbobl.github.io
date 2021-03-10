@@ -1,7 +1,7 @@
 ---
 title: "Making a ZX Spectrum Game - Part 2 - The Initial Prototype in Sinclair Basic"
-date: 2020-11-17T11:31:33+01:00
-draft: true
+date: 2020-11-17T10:45:06+01:00
+draft: false
 categories:
 - Personal
 tags: 

@@ -1,6 +1,6 @@
 ---
 title: "Making OKR Work for Small Development Teams"
-date: 2020-09-28T23:53:03+01:00
+date: 2020-09-28T09:48:26+01:00
 draft: false
 categories:
 - 2020

@@ -1,7 +1,7 @@
 ---
 title: "Seeking Speaking Opportunities"
-date: 2020-09-22T11:28:30+01:00
-draft: true
+date: 2020-09-22T13:14:29+01:00
+draft: false
 categories:
 - Work
 tags: 

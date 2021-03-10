@@ -1,7 +1,7 @@
 ---
 title: "Making a ZX Spectrum Game - Part 0 - Defining the Project"
-date: 2020-11-04T11:30:48+01:00
-draft: true
+date: 2020-11-04T16:24:58+01:00
+draft: false
 categories:
 - Personal
 tags: 

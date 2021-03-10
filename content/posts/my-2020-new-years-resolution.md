@@ -1,7 +1,7 @@
 ---
 title: "My 2020 New Years Resolution"
-date: 2020-01-02T11:28:49+01:00
-draft: true
+date: 2020-01-02T00:52:25+01:00
+draft: false
 categories:
 - Personal
 tags: 

@@ -1,7 +1,7 @@
 ---
 title: "Making a ZX Spectrum Game - Part 1 - My Development Setup"
-date: 2020-11-10T11:31:10+01:00
-draft: true
+date: 2020-11-10T14:59:23+01:00
+draft: false
 categories:
 - Personal
 tags: 
