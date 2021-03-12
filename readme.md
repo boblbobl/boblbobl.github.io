@@ -10,6 +10,6 @@ This is my personal blog powered by Hugo hosted on GitHub Pages.
 - [x] Setup GitHub Pages on boblbobl.github.io
 - [ ] Design 404 page
 - [ ] Fix taxonomy layout
-- [ ] Setup CNAME and redirect traffic to GitHub Pages
+- [x] Setup CNAME and redirect traffic to GitHub Pages
 - [ ] Clean-up theme stylesheet
 - [ ] Write post about the design decision behind
