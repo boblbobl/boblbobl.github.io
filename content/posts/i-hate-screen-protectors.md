@@ -1,6 +1,6 @@
 ---
 title: "I Hate Screen Protectors"
-date: 2021-05-01
+date: 2021-05-01T11:11:10+01:00
 draft: false
 categories:
 - Personal
