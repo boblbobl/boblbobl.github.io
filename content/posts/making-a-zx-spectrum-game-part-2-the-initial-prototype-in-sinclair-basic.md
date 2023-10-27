@@ -175,4 +175,4 @@ Here is the code in its entirety:
 
 I am impressed; it was possible to implement the basic game logic in 29 lines of code. The game is very crude, even for a ZX Spectrum game, but a lot is also missing. The game would benefit from having actual graphics and possibly also animations. Preferably, it should be possible to move the character diagonally. Currently, you can only move the character in a straight line due to the limitations of INKEY$ (only detecting the last single key-press). Lastly, it should also be possible to use the entire screen within the border as the game’s play area.
 
-Next, I will investigate how to add some graphics to the prototype before I move the project to – and compile it with ZX BASIC.
+Next, I will investigate how to cross compile the prototype with ZX BASIC, and how to extend it using modern language features such as types and functions/subroutines.

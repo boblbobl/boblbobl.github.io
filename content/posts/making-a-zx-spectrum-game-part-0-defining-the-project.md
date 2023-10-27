@@ -19,7 +19,7 @@ This post will be the first of many, where I will try to make a game for the ZX 
 - [Part 2. Prototyping in Sinclair BASIC](https://boblbobl.com/2020/11/17/making-a-zx-spectrum-game-part-2-the-initial-prototype-in-sinclair-basic/)
 - Part 3. Cross-compiling using ZX Basic
 - Part 4. Sprites and Animation
-- Part 5. Running the Game on the Real Thing
+- Part 5. Running the Game on actual Hardware
 
 It would also be fun to do a loading screen, make some SFX, and support joystick input as well, but let’s see how far I get.
 
