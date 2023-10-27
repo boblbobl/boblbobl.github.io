@@ -17,7 +17,7 @@ This post will be the first of many, where I will try to make a game for the ZX 
 
 - [Part 1. My Development Setup](https://boblbobl.com/2020/11/10/making-a-zx-spectrum-game-part-1-my-development-setup/)
 - [Part 2. Prototyping in Sinclair BASIC](https://boblbobl.com/2020/11/17/making-a-zx-spectrum-game-part-2-the-initial-prototype-in-sinclair-basic/)
-- Part 3. Cross-compiling using ZX Basic
+- [Part 3. Cross-compiling using ZX Basic](https://boblbobl.com/2020/11/24/making-a-zx-spectrum-game-part-3-cross-compiling-in-zx-basic/)
 - Part 4. Sprites and Animation
 - Part 5. Running the Game on actual Hardware
 
