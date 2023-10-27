@@ -1,0 +1,144 @@
+<!doctype html><html lang=en-us><head><title>Making a ZX Spectrum Game - Part 3 - Cross Compiling in ZX Basic | boblbobl</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="My name is Lars Diget, and I’m a dad, husband, developer/architect, and amateur photographer. This blog intends to share any idea, thought, or inspiration, I might have, in the form of blog posts or photographs.
+In my day job, I work for the best toy manufacturer in the world, LEGO®, creating digital experiences for kids of all ages. I’m primarily involved with projects in the initial phases, even before they are actual projects."><meta name=generator content="Hugo 0.119.0"><meta name=ROBOTS content="NOINDEX, NOFOLLOW"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/images/favicon.ico type=image/x-icon></head><body class=single><nav class=navigation><a href=/ class=logo>boblbobl</a><ul class=menu><li><a href=/about>About</a></li></ul></nav><header class=profile><a href=/><img class=avatar alt=avatar src=/images/me.png></a><div>Lars Diget</div></header><main class=main><section id=single><h1 class=title>Making a ZX Spectrum Game - Part 3 - Cross Compiling in ZX Basic</h1><div class=tip><span>Nov 24, 2020 10:22</span>
+<span class=split>·</span>
+<span>1152 words</span>
+<span class=split>·</span>
+<span>6 minute read</span></div><div class=content><p>The time has come to look into cross compiling my code for the ZX Spectrum. As I alluded to in <a href=https://boblbobl.com/2020/11/10/making-a-zx-spectrum-game-part-1-my-development-setup/>part 1</a> of the series, I intend to use <a href=https://github.com/boriel/zxbasic>ZXBASIC</a> for cross compiling, which also means I can basically take (no pun intended) the prototype already writen in Sinclair BASIC and rewrite it in ZXBASIC.</p><p>The advantage of ZXBASIC, besides compiling to assembler, is that it is also a modern take or dialect on BASIC (especially when compared to Sinclair BASIC), where it tries to keep some of the original Sinclair BASIC features, which definitely eases the transition from one language to the other, but it also offers features of a cross compiled language, such as data types and the possibility to do inline assembly code.</p><p>Let&rsquo;s have a look at the prototype code:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-basic data-lang=basic><span style=display:flex><span>100 <span style=color:#75715e>REM Init Game</span>
+</span></span><span style=display:flex><span>101 <span style=color:#66d9ef>LET</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>16</span>
+</span></span><span style=display:flex><span>102 <span style=color:#66d9ef>LET</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>11</span>
+</span></span><span style=display:flex><span>103 <span style=color:#66d9ef>LET</span> s <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>110 BORDER <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>150 <span style=color:#75715e>REM Generate Lemons</span>
+</span></span><span style=display:flex><span>151 <span style=color:#66d9ef>FOR</span> l<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> to <span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span>152 <span style=color:#66d9ef>PRINT</span> AT <span style=color:#66d9ef>INT</span>(<span style=color:#66d9ef>RND</span><span style=color:#f92672>*</span><span style=color:#ae81ff>20</span>)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>,<span style=color:#66d9ef>INT</span>(<span style=color:#66d9ef>RND</span><span style=color:#f92672>*</span><span style=color:#ae81ff>31</span>);<span style=color:#e6db74>&#34;@&#34;</span>
+</span></span><span style=display:flex><span>153 <span style=color:#66d9ef>NEXT</span> l
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>200 <span style=color:#75715e>REM Main Game Loop</span>
+</span></span><span style=display:flex><span>201 <span style=color:#66d9ef>PRINT</span> AT y,x;<span style=color:#e6db74>&#34;A&#34;</span>
+</span></span><span style=display:flex><span>202 <span style=color:#66d9ef>PRINT</span> AT <span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>;<span style=color:#e6db74>&#34;Score: &#34;</span>;s
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>210 <span style=color:#66d9ef>LET</span> vx <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>211 <span style=color:#66d9ef>LET</span> vy <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>212 <span style=color:#66d9ef>LET</span> k$ <span style=color:#f92672>=</span> INKEY$
+</span></span><span style=display:flex><span>213 <span style=color:#66d9ef>IF</span> k$ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;q&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> vy<span style=color:#f92672>=</span><span style=color:#ae81ff>-1</span>
+</span></span><span style=display:flex><span>214 <span style=color:#66d9ef>IF</span> k$ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> vy<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>215 <span style=color:#66d9ef>IF</span> k$ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;o&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> vx<span style=color:#f92672>=</span><span style=color:#ae81ff>-1</span>
+</span></span><span style=display:flex><span>216 <span style=color:#66d9ef>IF</span> k$ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;p&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> vx<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>250 <span style=color:#66d9ef>IF</span> vx <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>AND</span> vy <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>GOTO</span> 210
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>260 <span style=color:#66d9ef>PRINT</span> AT y,x;<span style=color:#e6db74>&#34; &#34;</span>
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>270 <span style=color:#66d9ef>LET</span> x <span style=color:#f92672>=</span> x<span style=color:#f92672>+</span>vx
+</span></span><span style=display:flex><span>271 <span style=color:#66d9ef>IF</span> x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>272</span> <span style=color:#66d9ef>IF</span> x <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>31</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>31</span>
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>280 <span style=color:#66d9ef>LET</span> y <span style=color:#f92672>=</span> y<span style=color:#f92672>+</span>vy
+</span></span><span style=display:flex><span>281 <span style=color:#66d9ef>IF</span> y <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>282</span> <span style=color:#66d9ef>IF</span> y <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>21</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>21</span>
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>290 <span style=color:#66d9ef>IF</span> <span style=color:#66d9ef>SCREEN</span><span style=color:#960050;background-color:#1e0010>$</span>(y,x) <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;@&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> s <span style=color:#f92672>=</span> s<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span><span style=color:#f92672>:</span><span style=color:#66d9ef>PRINT</span> AT <span style=color:#66d9ef>INT</span>(<span style=color:#66d9ef>RND</span><span style=color:#f92672>*</span><span style=color:#ae81ff>20</span>)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>,<span style=color:#66d9ef>INT</span>(<span style=color:#66d9ef>RND</span><span style=color:#f92672>*</span><span style=color:#ae81ff>31</span>);<span style=color:#e6db74>&#34;@&#34;</span>
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>300 <span style=color:#66d9ef>GOTO</span> 200
+</span></span></code></pre></div><p>My super simple game play in only 29 lines of code. Alright so let&rsquo;s try cross-compiling the existing prototype code with ZXBASIC.</p><h2 id=porting-the-code-to-zxbasic>Porting the Code to ZXBASIC</h2><p>To start with, let&rsquo;s just try to compile the prototype code as is with the ZXBASIC compiler.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>zxbc.py prototype.bas
+</span></span></code></pre></div><p>This gives the following output in the terminal:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>prototype.bas:2: warning: <span style=color:#f92672>[</span>W100<span style=color:#f92672>]</span> Using default implicit type <span style=color:#e6db74>&#39;ubyte&#39;</span> <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#39;x&#39;</span>
+</span></span><span style=display:flex><span>prototype.bas:3: warning: <span style=color:#f92672>[</span>W100<span style=color:#f92672>]</span> Using default implicit type <span style=color:#e6db74>&#39;ubyte&#39;</span> <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#39;y&#39;</span>
+</span></span><span style=display:flex><span>prototype.bas:4: warning: <span style=color:#f92672>[</span>W100<span style=color:#f92672>]</span> Using default implicit type <span style=color:#e6db74>&#39;ubyte&#39;</span> <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#39;s&#39;</span>
+</span></span><span style=display:flex><span>prototype.bas:17: warning: <span style=color:#f92672>[</span>W100<span style=color:#f92672>]</span> Using default implicit type <span style=color:#e6db74>&#39;ubyte&#39;</span> <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#39;vx&#39;</span>
+</span></span><span style=display:flex><span>prototype.bas:18: warning: <span style=color:#f92672>[</span>W100<span style=color:#f92672>]</span> Using default implicit type <span style=color:#e6db74>&#39;ubyte&#39;</span> <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#39;vy&#39;</span>
+</span></span><span style=display:flex><span>prototype.bas:37: error: Undeclared <span style=color:#66d9ef>function</span> <span style=color:#e6db74>&#34;SCREEN</span>$<span style=color:#e6db74>&#34;</span>
+</span></span></code></pre></div><p>Based on the compiler warnings, it seems that the global variables needs to be cast to a specific type, by default they are cast as ubyte. Unfortunately, I was unsuccesful in compiling the code due to the error of an undeclared function &ldquo;SCREEN$&rdquo;. The latter is something that can easily be fixed by referencing the screen library function using the following include statement.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-basic data-lang=basic><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>#</span> include <span style=color:#f92672>&lt;</span>screen<span style=color:#f92672>.</span>bas<span style=color:#f92672>&gt;</span>
+</span></span></code></pre></div><p>In addition, let&rsquo;s set x,y,s,vx, and vy to relevant types. In this case I&rsquo;ll use Integer for all of them.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-basic data-lang=basic><span style=display:flex><span><span style=color:#66d9ef>DIM</span> x,y,s,vx,vy <span style=color:#66d9ef>AS</span> <span style=color:#66d9ef>INTEGER</span>
+</span></span></code></pre></div><p>I&rsquo;ve made these changes in a new file called prototype-2.bas, let&rsquo;s try to compile it.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>zxbc.py prototype-2.bas
+</span></span></code></pre></div><p>I now get a few compiler warnings that parameters &lsquo;row&rsquo; and &lsquo;col&rsquo; is never used from the included screen.bas library, but other than that the compiler outputs a prototype-2.bin file. By adding the compiler instructions &ldquo;-t -B -a&rdquo;, I tell the compiler to respectively create a .tap file, to include a BASIC loader which loads the rest of the code, and sets the program to run once loaded.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>zxbc.py prototype-2.bas -t -B -a
+</span></span></code></pre></div><p>After loading the game into the emulator, it is apparent that something is not functioning as it should.</p><p><figure><img src=/images/posts/awakeman-prototype-2.png alt="Screenshot of the game after compilation with ZXBASIC" title="Screenshot of the game after compilation with ZXBASIC"><figcaption>Screenshot of the game after compilation with ZXBASIC</figcaption></figure></p><p>Besides the &ldquo;Bytes: Prototype-&rdquo; message on screen, our characters moves crazy fast around on screen. We can fix the former issue just by calling <code>CLS</code>, which basically clears the screen before rendering the character and &ldquo;limes&rdquo;, and we can slow down the character movements, by directly calling the assembly halt command.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-basic data-lang=basic><span style=display:flex><span><span style=color:#66d9ef>CLS</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Asm
+</span></span><span style=display:flex><span>    halt
+</span></span><span style=display:flex><span>    halt
+</span></span><span style=display:flex><span>End Asm
+</span></span></code></pre></div><h2 id=refactoring-the-code>Refactoring the Code</h2><p>As you may have noticed, I have not been using any line numbers in the additions to the code, I have just made. This is because ZXBASIC does not require to write any line numbers. Line numbers are allowed, but are rather treated as labels. I would like to go through the code and remove all line numbers, and thereby also replacing goto loops with appropriate while loops and adding subroutines and possibly functions to clean up the code a bit.</p><p>Here is the refactored code:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-basic data-lang=basic><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>#</span> include <span style=color:#f92672>&lt;</span>screen<span style=color:#f92672>.</span>bas<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&#39;Global Variables</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>DIM</span> x,y,s,vx,vy <span style=color:#66d9ef>AS</span> <span style=color:#66d9ef>INTEGER</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>LET</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>16</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>LET</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>11</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>LET</span> s <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>LET</span> vx <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>LET</span> vy <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Sub updateScore(n <span style=color:#66d9ef>AS</span> <span style=color:#66d9ef>INTEGER</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>LET</span> s <span style=color:#f92672>=</span> s<span style=color:#f92672>+</span>n:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>PRINT</span> AT <span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>;<span style=color:#e6db74>&#34;Score: &#34;</span>;s
+</span></span><span style=display:flex><span>End Sub
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Sub generateLemons(n <span style=color:#66d9ef>AS</span> <span style=color:#66d9ef>INTEGER</span>)
+</span></span><span style=display:flex><span>    INK <span style=color:#ae81ff>6</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>FOR</span> l<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> to n
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>PRINT</span> AT <span style=color:#66d9ef>INT</span>(<span style=color:#66d9ef>RND</span><span style=color:#f92672>*</span><span style=color:#ae81ff>20</span>)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>,<span style=color:#66d9ef>INT</span>(<span style=color:#66d9ef>RND</span><span style=color:#f92672>*</span><span style=color:#ae81ff>31</span>);<span style=color:#e6db74>&#34;@&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>NEXT</span> l
+</span></span><span style=display:flex><span>End Sub
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Sub initScreen()
+</span></span><span style=display:flex><span>    BORDER <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    PAPER <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    INK <span style=color:#ae81ff>7</span>
+</span></span><span style=display:flex><span>    BRIGHT <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>CLS</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>PRINT</span> AT <span style=color:#ae81ff>23</span>,<span style=color:#ae81ff>0</span>;<span style=color:#e6db74>&#34;Q/A/O/P - up/down/left/right&#34;</span>
+</span></span><span style=display:flex><span>    updateScore(<span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>    generateLemons(<span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>End Sub
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Sub movePlayer()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>LET</span> vx <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>LET</span> vy <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>LET</span> k$ <span style=color:#f92672>=</span> INKEY$
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>IF</span> k$ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;q&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> vy<span style=color:#f92672>=</span><span style=color:#ae81ff>-1</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>IF</span> k$ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;a&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> vy<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>IF</span> k$ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;o&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> vx<span style=color:#f92672>=</span><span style=color:#ae81ff>-1</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>IF</span> k$ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;p&#34;</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> vx<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>IF</span> vx <span style=color:#f92672>&lt;&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>OR</span> vy <span style=color:#f92672>&lt;&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>THEN</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>PRINT</span> AT y,x;<span style=color:#e6db74>&#34; &#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>LET</span> x <span style=color:#f92672>=</span> x<span style=color:#f92672>+</span>vx
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>IF</span> x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>IF</span> x <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>31</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>31</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>LET</span> y <span style=color:#f92672>=</span> y<span style=color:#f92672>+</span>vy
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>IF</span> y <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>IF</span> y <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>21</span> <span style=color:#66d9ef>THEN</span> <span style=color:#66d9ef>LET</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>21</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>IF</span> <span style=color:#66d9ef>SCREEN</span><span style=color:#960050;background-color:#1e0010>$</span>(y,x) <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;@&#34;</span> <span style=color:#66d9ef>THEN</span>
+</span></span><span style=display:flex><span>            updateScore(<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>            generateLemons(<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>END</span> <span style=color:#66d9ef>IF</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>END</span> <span style=color:#66d9ef>IF</span>
+</span></span><span style=display:flex><span>End Sub
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>initScreen()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&#39;Main Game Loop</span>
+</span></span><span style=display:flex><span>While <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>&#39;Draw Player</span>
+</span></span><span style=display:flex><span>    INK <span style=color:#ae81ff>7</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>PRINT</span> AT y,x;<span style=color:#e6db74>&#34;A&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Asm
+</span></span><span style=display:flex><span>        halt
+</span></span><span style=display:flex><span>        halt
+</span></span><span style=display:flex><span>    End Asm
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    movePlayer()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>End While
+</span></span></code></pre></div><p>I created four subroutines to better organize the code; one to generate lemons - <code>generateLemons(0)</code>, one to update the score - <code>updateScore(0)</code>, one to initialize the screen - <code>initScreen()</code>, and finally one to update the player movement based on keyboard input - <code>movePlayer()</code>.</p><p>BASIC is case-insensitive, so it does not really matter whether I write e.g. &ldquo;IF&rdquo; or &ldquo;if&rdquo;. At the moment it is a mix of everything, but I think I&rsquo;ll eventually settle on camel case for my own subroutines and pascal case for language identifiers (variable names, function names, subroutine names, and labels); this will be a job for future me.</p><p>In addition, I&rsquo;ve added a description text in the bottom of the screen, and I&rsquo;ve also added a bit more styling to the game; the background is now black and the player is white and the lemons are yellow.</p><p><figure><img src=/images/posts/awakeman-prototype-3.png alt="Screenshot of the game after refactoring" title="Screenshot of the game after refactoring"><figcaption>Screenshot of the game after refactoring</figcaption></figure></p><p>Next, I will investigate how to add some graphics and possibly animations to the prototype.</p></div><div class=tags><a href=https://boblbobl.com/tags/8-bit>8-bit</a>
+<a href=https://boblbobl.com/tags/speccy>speccy</a>
+<a href=https://boblbobl.com/tags/tutorial>tutorial</a>
+<a href=https://boblbobl.com/tags/zx-spectrum>zx-spectrum</a></div></section></main><footer id=footer><span class=copyright>© Copyright
+2023</span>
+<span>·</span>
+<span class=powerby>Powered by <a href=http://www.gohugo.io/>Hugo</a></span>
+<span>·</span>
+<span class=theme>Theme Paper-Thin</span></footer></body></html>
