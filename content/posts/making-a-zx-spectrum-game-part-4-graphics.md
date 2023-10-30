@@ -85,11 +85,4 @@ If limes(y,x) = 1 Then
     generateLimes(1)
 End If
 ```
-Great
-
-
-[1]: https://www.mojontwins.com/juegos_mojonos/fourspriter-1-0/
-[2]: https://bitbucket.org/zxbasic/mojon-twins/src/master/lib/fourspriter/
-[3]: https://www.mojontwins.com/juegos_mojonos/fourspriter-1-0/tutorial-de-zx-basic-fourspriter/
-
-[4]: http://oldmachinery.blogspot.com/2014/04/zx-sprites.html
+Great, the prototype works as expected with wonderful new "lime" graphics. Next, I'll have a look at how to render the player and possibly use animations for when the player walks across the screen.
