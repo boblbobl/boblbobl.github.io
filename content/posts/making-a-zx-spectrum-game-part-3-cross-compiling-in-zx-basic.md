@@ -24,7 +24,7 @@ Let's have a look at the prototype code:
 103 LET s = 0
 110 BORDER 0
  
-150 REM Generate Lemons
+150 REM Generate Limes
 151 FOR l=1 to 5
 152 PRINT AT INT(RND*20)+1,INT(RND*31);"@"
 153 NEXT l
@@ -138,7 +138,7 @@ Sub updateScore(n AS INTEGER)
     PRINT AT 0,0;"Score: ";s
 End Sub
 
-Sub generateLemons(n AS INTEGER)
+Sub generateLimes(n AS INTEGER)
     INK 6
     FOR l=1 to n
         PRINT AT INT(RND*20)+1,INT(RND*31);"@"
@@ -153,7 +153,7 @@ Sub initScreen()
     CLS
     PRINT AT 23,0;"Q/A/O/P - up/down/left/right"
     updateScore(0)
-    generateLemons(5)
+    generateLimes(5)
 End Sub
 
 Sub movePlayer()
@@ -178,7 +178,7 @@ Sub movePlayer()
 
         IF SCREEN$(y,x) = "@" THEN
             updateScore(1)
-            generateLemons(1)
+            generateLimes(1)
         END IF
     END IF
 End Sub
@@ -201,15 +201,15 @@ While 1
 End While
 ```
 
-I created four subroutines to better organize the code; one to generate lemons - ```generateLemons(0)```, one to update the score - ```updateScore(0)```, one to initialize the screen - ```initScreen()```, and finally one to update the player movement based on keyboard input - ```movePlayer()```. 
+I created four subroutines to better organize the code; one to generate limes - ```generateLimes(0)```, one to update the score - ```updateScore(0)```, one to initialize the screen - ```initScreen()```, and finally one to update the player movement based on keyboard input - ```movePlayer()```. 
 
 BASIC is case-insensitive, so it does not really matter whether I write e.g. "IF" or "if". At the moment it is a mix of everything, but I think I'll eventually settle on camel case for my own subroutines and pascal case for language identifiers (variable names, function names, subroutine names, and labels); this will be a job for future me.
 
-In addition, I've added a description text in the bottom of the screen, and I've also added a bit more styling to the game; the background is now black and the player is white and the lemons are yellow.
+In addition, I've added a description text in the bottom of the screen, and I've also added a bit more styling to the game; the background is now black and the player is white and the limes are yellow.
 
 ![Screenshot of the game after refactoring](/images/posts/awakeman-prototype-3.png "Screenshot of the game after refactoring")
 
-Next, I will investigate how to add some graphics and possibly animations to the prototype.
+Next, I will investigate how to add graphics to the prototype.
 
 [1]: https://boblbobl.com/2020/11/10/making-a-zx-spectrum-game-part-1-my-development-setup/
 [2]: https://github.com/boriel/zxbasic

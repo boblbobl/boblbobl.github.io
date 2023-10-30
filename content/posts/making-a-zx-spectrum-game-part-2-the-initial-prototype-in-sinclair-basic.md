@@ -117,7 +117,7 @@ Let’s implement the score indicator:
 I need a global variable s to contain the score, and I need to update the score counter within the game loop’s screen update routine. To test it out, let’s add some limes to the screen.
 
 ```basic
-150 REM Generate Lemons
+150 REM Generate Limes
 151 FOR l=1 to 5
 152 PRINT AT INT(RND*20)+1,INT(RND*31);"@"
 153 NEXT l
@@ -141,7 +141,7 @@ Here is the code in its entirety:
 103 LET s = 0
 110 BORDER 0
  
-150 REM Generate Lemons
+150 REM Generate Limes
 151 FOR l=1 to 5
 152 PRINT AT INT(RND*20)+1,INT(RND*31);"@"
 153 NEXT l
