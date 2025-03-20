@@ -4,11 +4,11 @@ date: 2021-03-07T00:43:07+01:00
 draft: false
 ---
 
-My name is Lars Diget, and I’m a dad, husband, developer/architect, and amateur photographer. This blog intends to share any idea, thought, or inspiration, I might have, in the form of blog posts or photographs.
+My name is Lars Diget, and I’m a dad, husband, and maker. This blog intends to share any idea, thought, or inspiration, I might have, in the form of blog posts or photographs.
 
-In my day job, I work for the best toy manufacturer in the world, LEGO®, creating digital experiences for kids of all ages. I’m primarily involved with projects in the initial phases, even before they are actual projects. Most of my time, I create prototypes or investigate technologies, strategies, processes, and architecture. I evangelize teach co-workers in our tech stack in general and ways to leverage its capabilities.
+In my day job, I work for the best toy manufacturer in the world, the LEGO® Group, creating digital experiences for kids of all ages. Here I work as Senior Manager focusing on the engineering parts of our kids portfolio; which includes LEGO Play and kids.lego.com. I highly encourage and practice and show-don't-tell approach to workm sometimes it is just a lot easier to communicate something by showing it, this can be using [power point](https://boblbobl.com/2020/09/23/make-your-presentations-fun/), a small prototype, or sometimes I even use video to tell a story.
 
-I love making photographs in my spare time, preferably with analog cameras such as the medium format Hasselblad 500 C/M. The subject is most often the streets around where I live in Aarhus, Denmark.
+In my spare time, I love making stuff. I would consider myself an amateur photographer, preferable taking photos with analog cameras such as the medium format Hasselblad 500 C/M. The subject is most often the streets around where I live in Aarhus, Denmark.
 
 I’m a proud dad to a girl and boy (twins) and married to my lovely wife for the last 10+ years.
 
