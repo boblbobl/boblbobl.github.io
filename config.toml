@@ -2,7 +2,9 @@ baseURL = "https://boblbobl.com/"
 languageCode = "en-us"
 title = "boblbobl"
 theme = "paper-thin"
-paginate = 10
+
+[pagination]
+    pagerSize = 10
 
 [author]
     name = "Lars Diget"
