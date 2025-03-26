@@ -12,11 +12,3 @@ tags:
 ---
 
 
-
-
-
-[1]: https://www.mojontwins.com/juegos_mojonos/fourspriter-1-0/
-[2]: https://bitbucket.org/zxbasic/mojon-twins/src/master/lib/fourspriter/
-[3]: https://www.mojontwins.com/juegos_mojonos/fourspriter-1-0/tutorial-de-zx-basic-fourspriter/
-
-[4]: http://oldmachinery.blogspot.com/2014/04/zx-sprites.html

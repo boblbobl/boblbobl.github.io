@@ -6,10 +6,11 @@ theme = "paper-thin"
 [pagination]
     pagerSize = 10
 
-[author]
-    name = "Lars Diget"
-    avatar = "images/me.png"
-    logo = "images/logo.png"
+[params]
+    [params.author]
+        name = "Lars Diget"
+        avatar = "images/me.png"
+        logo = "images/logo.png"
 
 [permalinks]
     posts = "/:year/:month/:day/:title/"
