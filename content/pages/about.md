@@ -4,25 +4,19 @@ date: 2021-03-07T00:43:07+01:00
 draft: false
 ---
 
-My name is Lars Diget, and I’m a dad, husband, and maker. This blog intends to share any idea, thought, or inspiration, I might have, in the form of blog posts or photographs.
+My name is Lars Diget, and I’m a dad, husband, engineering director, and maker.
 
-In my day job, I work for the best toy manufacturer in the world, the LEGO® Group, creating digital experiences for kids of all ages. Here I work as Senior Manager focusing on the engineering parts of our kids portfolio; which includes LEGO Play and kids.lego.com. I highly encourage and practice a show-don't-tell approach to work; sometimes it is just a lot easier to communicate something by showing it, this can be using [power point](https://boblbobl.com/2020/09/23/make-your-presentations-fun/), a small prototype, or sometimes I even use video to tell a story.
+I live in Aarhus, Denmark, and work in Billund, where I spend my days helping product and engineering teams build digital experiences across app and web. I currently oversee multiple teams, but I still think of myself as a maker first and a leader second. I enjoy the craft of building things just as much as I enjoy helping teams do their best work.
 
-In my spare time, I love making stuff. I would consider myself an amateur photographer, preferable taking photos with analog cameras such as the medium format Hasselblad 500 C/M. The subject is most often the streets around where I live in Aarhus, Denmark.
+Over the years, my work has shifted from being purely hands-on to being more about direction, alignment, and creating the conditions for good engineering. I’m interested in how teams work, how products get shaped, and how ideas move from sketchy beginnings to something real and useful. That includes the messy parts too: planning, trade-offs, communication, and all the practical details that sit between strategy and execution.
 
-I’m a proud dad to a girl and boy (twins) and married to my lovely wife for the last 10+ years.
+Outside of work, I’m still drawn to projects for the joy of making. Sometimes that means small software experiments, sometimes old computers, sometimes writing, and sometimes whatever idea seems too interesting to leave alone.
+
+This blog is where I write about the things that hold my attention: engineering leadership, software and web projects, ways of working, side projects, and the occasional personal perspective when it feels relevant. Some posts are current reflections, others are snapshots of what I was thinking at a particular point in time.
 
 ## Contact
-So you want to get in touch, eh?
-
-Here are some reasons for doing so:
-
-- You have read the blog, like what you see, and want to know more about any blog posts.
-- You would like me to [speak at your conference or event](https://boblbobl.com/2020/09/22/seeking-speaking-opportunities/).
-- You think I am an all-round nice guy and just want to hang.
-
-If that is the case, you can DM me on [LinkedIn](https://www.linkedin.com/in/boblbobl/) or [Twitter](https://twitter.com/boblbobl).
+If you’ve read something here and want to get in touch, feel free to reach out on [LinkedIn](https://www.linkedin.com/in/boblbobl/).
 
 ----
 
-Disclaimer: The opinions expressed on this blog are my own opinions and do not represent my employer’s view in any way, shape, or form.
+The opinions expressed here are my own and do not represent those of my employer.
