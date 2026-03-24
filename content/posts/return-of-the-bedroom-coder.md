@@ -19,7 +19,7 @@ When I was a kid in the 80s, the idea of the bedroom coder felt almost magical.
 
 You would read about someone building a game at home on a ZX Spectrum or a Commodore 64, and somehow that game could end up in the hands of players around the world. It made game development feel possible. Not easy, but possible.
 
-It was one of the first examples I saw of software as a creative medium where one person with a computer and a good idea could make something real and maybe even build a career from it.
+It was one of the first examples I saw of software as a creative medium where one person with a computer and a good idea could make something real, ship it, and maybe even build a career from it.
 
 Then a different era took over.
 
@@ -39,7 +39,7 @@ Earlier generations often had to climb a steep learning curve before they could 
 
 That matters.
 
-Not because AI removes the need for skill. It does not. Making something good still requires taste, persistence, and a lot of iteration. But it changes the starting point. It makes creation feel more accessible again.
+Not because AI removes the need for skill. It does not. Making something good still requires taste, persistence, and iteration. But it changes the starting point. It makes creation feel more accessible again.
 
 That is what reminds me of the old bedroom coder era.
 
