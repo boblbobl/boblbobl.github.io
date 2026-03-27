@@ -1,6 +1,7 @@
 :root {
   --black: #404040;
   --yellow: #ffbe0b;
+  --light-yellow: #fff9ec;
   --orange: #fb5607;
   --magenta: #ff006e;
   --purple: #8338ec;
@@ -288,8 +289,8 @@ footer a:hover {
 }
 
 #list-page .read-more {
-  display: inline-block;
-  margin-top: 18px;
+  display: table;
+  margin: 18px auto 0;
   padding: 8px 12px;
   border: 1px solid #e6e6e6;
   border-radius: 999px;
@@ -301,9 +302,9 @@ footer a:hover {
 }
 
 #list-page .item-link:hover .read-more {
-  background: #fff3ec;
-  border-color: #ffd2bf;
-  color: var(--orange);
+  background: var(--light-yellow);
+  border-color: var(--yellow);
+  color: var(--yellow);
 }
 
 #list-page .cover {
