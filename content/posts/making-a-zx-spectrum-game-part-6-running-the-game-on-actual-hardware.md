@@ -17,14 +17,11 @@ That was always part of the point of this project. It is one thing to get someth
 
 ## Loading the Game on Real Hardware
 
-To get the game onto a real ZX Spectrum, I used a [TXDuino](https://www.facebook.com/groups/txduino/) tape emulator. It emulates cassette loading from digital audio files, which makes it a very practical way to move a TAP file from a modern computer to original hardware without having to rely on old tapes or a full physical cassette workflow.
+To get the game onto a real ZX Spectrum, I used a TXDuino tape emulator. It emulates cassette loading from digital audio files, which makes it a very practical way to move a TAP file from a modern computer to original hardware without having to rely on old tapes or a full physical cassette workflow.
 
 Here is the game loading and running on the real machine:
 
-<video controls preload="metadata" style="width: 100%; max-width: 680px;">
-  <source src="/videos/posts/zxawakeman-real-hardware.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+{{< postvideo "zxawakeman-real-hardware.mp4#t=0.1" >}}
 
 Seeing the game load and run on the actual hardware was one of the most satisfying parts of the whole project. The emulator is useful while developing, but this is the point where the project starts to feel real.
 
@@ -59,10 +56,7 @@ That also explains why I could not find any splash-screen drawing code in the ga
 
 Here is the loading screen in action:
 
-<video controls preload="metadata" style="width: 100%; max-width: 680px;">
-  <source src="/videos/posts/zxawakeman-loading-screen.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+{{< postvideo "zxawakeman-loading-screen.mp4#t=0.1" >}}
 
 ## Packaging the Game
 
