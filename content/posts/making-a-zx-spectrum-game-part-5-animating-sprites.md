@@ -1,7 +1,7 @@
 ---
 title: "Making a ZX Spectrum Game - Part 5 - Animating Sprites"
 date: 2020-12-08T14:10:11+01:00
-draft: true
+draft: false
 categories:
 - Personal
 tags: 
@@ -109,7 +109,7 @@ OK great, I got Fourspriter up-and-running and the gameplay is still intact, now
 
 ## Animating Awakeman
 
-Adding animation to the prototype is fairly simple using the Fourspriter library, it is simply a matter of setting the correct sprites using ```fsp21SetGfxSprite``` based on current direction and animation cycle.
+Adding animation to the prototype is fairly simple using the Fourspriter library. It is simply a matter of setting the correct sprites using ```fsp21SetGfxSprite``` based on the current direction and animation cycle.
 
 First off, I've created two variables, one to represent the current animation cycle (or step) and one to represent which direction the player is facing.
 
@@ -117,7 +117,7 @@ First off, I've created two variables, one to represent the current animation cy
 Dim pStep,pFacing as Byte
 ```
 
-Next, I've created a sub routing that increment steps to indicate which frame in the animation cycle to use.
+Next, I've created a sub routine that increments the step counter and loops back to zero when it reaches the end of the animation cycle.
 
 ```basic
 Sub doStep () 
@@ -125,9 +125,57 @@ Sub doStep ()
 End Sub
 ```
 
+The player should only animate while moving, so I call ```doStep()``` as part of the movement handling. At the same time, I also update ```pFacing``` so that the correct set of frames is used for up, down, left, and right.
 
+```basic
+Let k$ = INKEY$
+If k$ = "q" Then Let vy=-1:pFacing=16
+If k$ = "a" Then Let vy=1:pFacing=0
+If k$ = "o" Then Let vx=-1:pFacing=48
+If k$ = "p" Then Let vx=1:pFacing=32
 
+If vx <> 0 OR vy <> 0 Then
+    doStep()
+    ' move player and check collisions
+End If
+```
 
+Each direction on the sprite sheet has three animation frames. I use ```pFacing``` as the offset into the sprite sheet and then select the correct frame based on ```pStep```.
+
+```basic
+Sub updatesFrame()
+   If pStep = 0 Then
+      fsp21SetGfxSprite(3, pFacing, pFacing + 1, pFacing + 2, pFacing + 3)
+   ElseIf pStep = 1 Or pStep = 3 Then
+      fsp21SetGfxSprite(3, pFacing + 4, pFacing + 5, pFacing + 6, pFacing + 7)
+   Else
+      fsp21SetGfxSprite(3, pFacing + 8, pFacing + 9, pFacing + 10, pFacing + 11)
+   End If
+End Sub
+```
+
+With that in place, the main game loop only needs one extra step before drawing the player sprite.
+
+```basic
+Do    
+    Asm
+        halt
+        halt
+    End Asm
+
+    movePlayer()
+
+    updatesFrame()
+    fsp21MoveSprite(3, pX, pY)
+    fsp21UpdateSprites()
+Loop
+```
+
+When I compile and run this version in the emulator, Awakeman is no longer just a static graphic moving around the screen. The player character now animates correctly while walking, and the game starts to feel much more like an actual game than a prototype.
+
+There are still plenty of things I could improve from here, but at this point I have a playable game with working graphics, animation, score keeping, and collision detection.
+
+In the next post, I will try to get it running on actual hardware.
 
 [1]: https://www.mojontwins.com/juegos_mojonos/fourspriter-1-0/
 [2]: https://bitbucket.org/zxbasic/mojon-twins/src/master/lib/fourspriter/
