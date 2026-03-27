@@ -7,7 +7,7 @@
         {{ $title := .Title }}
         {{ $summary := .Summary }}
         {{ $date := dateFormat "Jan 2, 2006" .Date }}
-        <a href='{{ .RelPermalink }}'>
+        <a href='{{ .RelPermalink }}' class="item-link">
         <section class="item">
           <div>
             <h2 class="title">{{ $title }}</h2>   
@@ -15,6 +15,7 @@
           </div>
 
           <div class="summary">{{ $summary | plainify | htmlUnescape }}</div>
+          <div class="read-more" aria-hidden="true">Read more</div>
           
         </section>
         </a>
