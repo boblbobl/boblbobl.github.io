@@ -1,6 +1,6 @@
 ---
 title: "Maker First, Leader Second"
-date: 2026-03-23T17:36:00+01:00
+date: 2026-03-03T17:36:00+01:00
 draft: false
 categories:
 - Personal
