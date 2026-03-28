@@ -1,7 +1,7 @@
 ---
 title: "Making a ZX Spectrum Game - Part 6 - Running the Game on actual Hardware"
 date: 2020-12-15T13:01:23+01:00
-draft: true
+draft: false
 categories:
 - Personal
 tags: 
@@ -13,7 +13,7 @@ tags:
 
 At this point in the project, I had a playable version of the game running in the emulator with graphics, animation, collision detection, and score keeping. The only thing left to do was answer the obvious question: would it also run on an actual ZX Spectrum?
 
-That was always part of the point of this project. It is one thing to get something working in an emulator, but it feels very different when the code is running on the machine it was made for.
+That was always part of the point of this project. It is one thing to get something working in an emulator, but it feels very different when the code runs on the machine it was made for.
 
 ## Loading the Game on Real Hardware
 
@@ -46,7 +46,7 @@ There are a few important things happening here:
 
 - `CLEAR 24575` reserves memory below the machine code program.
 - `LOAD ""SCREEN$` loads a full screen image into the Spectrum display memory.
-- `POKE 23739,111` appears to tweak the machine state after the screen load so the transition into the rest of the loader works correctly.
+- `POKE 23739,111` tweaks the machine state after the screen load so the transition into the rest of the loader works correctly.
 - `LOAD ""CODE` loads the compiled game binary.
 - `RANDOMIZE USR 32768` jumps to the start address of the game and runs it.
 
@@ -84,7 +84,3 @@ And there is something uniquely satisfying about seeing code written on a modern
 If nothing else, this project reminded me why old hardware is still so compelling: the limitations are obvious, the feedback is immediate, and even tiny results feel earned.
 
 That is a good enough reason to make things for it.
-
----
-
-**Note:** the video file names above are placeholders. Before publishing, I need to add the actual video files to the site, or update the paths to wherever they live.
