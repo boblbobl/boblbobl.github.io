@@ -13,7 +13,7 @@ tags:
 
 At this point, the game is playable in the emulator with graphics, animation, collision detection, and score keeping. The next step is to answer the obvious question: will it also run on an actual ZX Spectrum?
 
-That is part of the point of this project. It is one thing to get something working in an emulator, but it feels very different when the code runs on the machine it was made for.
+This has always been the entire point of this project; it is one thing to get something working in an emulator, but it feels very different when the code runs on the machine it was made for.
 
 ## Loading the Game on Real Hardware
 
@@ -77,10 +77,10 @@ The answer is yes.
 
 Along the way, I touch a lot of the things that make the ZX Spectrum fun to work with: Sinclair BASIC, cross-compilation, user-defined graphics, sprites, animation, collision detection, and finally getting the result onto actual hardware.
 
-The game itself is still small and simple, but that is never really the point. The point is to explore the machine, learn something, and make something tangible.
+The game itself is still small and simple, but that was never really the point. The point is to explore the machine, learn something, and make something tangible.
 
 And there is something uniquely satisfying about seeing code written on a modern computer come to life on a machine that is more than 40 years old.
 
 If nothing else, this project is a reminder of why old hardware is still so compelling: the limitations are obvious, the feedback is immediate, and even tiny results feel earned.
 
-That is a good enough reason to make things for it.
+To me this "the" reason to make things for old 8-bit hardware.
