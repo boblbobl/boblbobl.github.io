@@ -1,0 +1,29 @@
+{{- $rawSrc := .Get "src" | default (.Get 0) -}}
+{{- if not $rawSrc -}}
+  {{- errorf "postvideo shortcode requires a filename or src parameter: %s" .Position -}}
+{{- end -}}
+
+{{- $src := $rawSrc -}}
+{{- if not (hasPrefix $src "/") -}}
+  {{- $src = printf "/videos/posts/%s" $src -}}
+{{- end -}}
+
+{{- $mimeType := .Get "type" -}}
+{{- if not $mimeType -}}
+  {{- $ext := lower (path.Ext $src) -}}
+  {{- if eq $ext ".webm" -}}
+    {{- $mimeType = "video/webm" -}}
+  {{- else if eq $ext ".ogv" -}}
+    {{- $mimeType = "video/ogg" -}}
+  {{- else -}}
+    {{- $mimeType = "video/mp4" -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $preload := .Get "preload" | default "metadata" -}}
+{{- $maxWidth := .Get "maxWidth" | default "680px" -}}
+
+<video controls preload="{{ $preload }}" style="width: 100%; max-width: {{ $maxWidth }};">
+  <source src="{{ $src }}" type="{{ $mimeType }}">
+  Your browser does not support the video tag.
+</video>
