@@ -176,10 +176,9 @@ nav.navigation a {
 
 nav.navigation .menu a.active {
   color: var(--yellow);
-  font-weight: 700;
 }
 
-nav.navigation .menu a.active:hover {
+nav.navigation .menu a:hover {
   color: var(--yellow);
 }
 
