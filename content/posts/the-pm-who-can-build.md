@@ -21,14 +21,18 @@ That sounds like familiar territory for a PM.
 
 What changes is their ability to act on those decisions. An idea that previously needed engineering capacity can now become a working prototype. Something people can try, react to, and help improve.
 
-That is a meaningful shift.
-
 I like the moment when an idea becomes concrete. It exposes things a document cannot. You discover what is missing, what feels awkward, and what seemed important until you actually used it.
 
-A PM who can build gets closer to that feedback. They can test a thought, adjust the scope, and try again without every iteration requiring a handoff.
+But making this work takes some support from the organization.
 
-There is still a learning curve. Working software needs care, and technical judgment matters increasingly as an experiment becomes something people depend on. Engineers and designers also bring product instincts of their own.
+Shopify has shared an interesting example with [Remote Dev](https://shopify.engineering/remote-dev). Their AI agent, River, can build and test mobile apps in remote development environments, with tasks started through Slack. A live preview lets people interact with the running app in a browser. Shopify explicitly describes PMs testing features without having to configure a mobile development environment.
 
-But I think PMs have a strong starting point. They already practice many of the decisions needed to guide the work. Learning to build with AI gives those decisions a more direct path into something real.
+That is the kind of support I think makes this opportunity practical.
 
-For PMs willing to stay curious and learn these tools, that feels like an opportunity worth taking.
+Giving a PM access to an AI tool is a start. Giving them an environment where they can explore an idea, try the result, and share it with their team takes it further. They can spend more time applying their product judgment and less time getting a development setup to work.
+
+There is still a learning curve. Working software needs care, and technical judgment matters increasingly as an experiment becomes something people depend on. Engineers have an important role in creating these environments and helping changes find their way into the product.
+
+I think PMs have a strong starting point. They already practice many of the decisions needed to guide the work. Learning to build with AI gives those decisions a more direct path into something real.
+
+And organizations can help open that path.
